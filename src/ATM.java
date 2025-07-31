@@ -36,7 +36,7 @@ public class ATM {
                     break;
                 case "4":
                     Main.bankAccount = (int) parentAccount.balance;
-                    Main.money = (int) parentAccount.money;
+                    Main.money = parentAccount.money;
                     System.out.println("Exiting ATM");
                     return;
 
