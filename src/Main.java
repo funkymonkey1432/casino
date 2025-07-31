@@ -22,8 +22,9 @@ public class Main {
         System.out.println("hello " + name + ".");
 
         while (playing) {
+            System.out.println("you have: $" + money + " on hand and \n $" + bankAccount + " in your bank account. \n");
             printGames(thingsToDo);
-            System.out.print("would you like to do(inter the number): ");
+            System.out.print("what would you like to do(inter the number): ");
             activity = Input.nextLine();
 
             switch (activity) {
@@ -45,7 +46,7 @@ public class Main {
         }
     }
     public static void printGames(String[] thingsToDo) {
-        System.out.print("\nthings to do");
+        System.out.println("\nthings to do");
 
         for (int i = 0; i<thingsToDo.length; i++) {
             System.out.println((i + 1) + ". " + thingsToDo[i]);

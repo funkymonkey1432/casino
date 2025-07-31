@@ -35,9 +35,11 @@ public class ATM {
                     parentAccount.checkBalance();
                     break;
                 case "4":
-                    System.out.println("exiting ATM");
-                    input.close();
+                    Main.bankAccount = (int) parentAccount.balance;
+                    Main.money = (int) parentAccount.money;
+                    System.out.println("Exiting ATM");
                     return;
+
                 default:
                     System.out.println("invalid  option");
 
