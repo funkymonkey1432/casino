@@ -6,11 +6,9 @@ import java.util.Map;
 public class roulette {
     public static void main(String[] args){
 
-        int budget;
+        int budget = Main.money ;
+
         int [] reds = {1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32};
-
-
-        budget = 100;
 
         Map<Integer, String> rouletteTable = new HashMap<>();
 
@@ -36,11 +34,12 @@ public class roulette {
             result = number.nextInt(33);
 
 
-            System.out.println("Starting budget: " + budget + "$");
+            System.out.println("\nStarting budget: " + budget + "$");
 
             while (true) {
                 System.out.print("Place your bet: ");
                 wager = scanner.nextInt();
+
 
                 if (wager > budget) {
                     System.out.println("Insufficient funds");
@@ -62,7 +61,7 @@ public class roulette {
                     System.out.println("You win!\n Bet: " + wager + "\nPayout: Your bet + " + wager + "$");
                     budget = budget + 2 * wager;
                     System.out.println("Current budget: " + budget + "$");
-                } else if (bet.equals("Odd") && result % 2 == 1 && 0 != result) {
+                } else if (bet.equals("Odd") && result % 2 == 1) {
                     System.out.println("You win!\n Bet: " + wager + "$\nPayout: Your bet + " + wager + "$");
                     budget = budget + 2 * wager;
                     System.out.println("Current budget: " + budget + "$");
@@ -70,6 +69,8 @@ public class roulette {
                     System.out.println("You lose!\nCurrent budget: " + budget + "$");
                 } else if (bet.equals("Odd") && result % 2 == 0) {
                     System.out.println("You lose!\nCurrent budget: " + budget + "$");
+                } else {
+                    System.out.println("invalid input");
                 }
 
             } else if (choice.equals("number")) {
@@ -123,12 +124,13 @@ public class roulette {
             String keepGoing = scanner.next();
 
             if (keepGoing.equals("no")){
+                Main.money = budget;
+
                 break;
             }else if (budget<=0){
                 System.out.println("Sorry, but you're all out of cash!");
+                Main.money = budget;
                 break;
-            }else{
-
             }
 
         }
