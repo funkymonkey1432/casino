@@ -14,9 +14,9 @@ public class roulette {
 
         rouletteTable.put(0, "green");
 
-        for (int i = 0; i<33; i++){
-            if (containsInteger.contains(reds, i)){
-                rouletteTable.put(i,"red");
+        for (int i = 0; i<33; i++) {
+            if (containsInteger.contains(reds, i)) {
+                rouletteTable.put(i, "red");
             }else{
                 rouletteTable.put(i, "black");
             }
