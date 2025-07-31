@@ -50,7 +50,7 @@ public class roulette {
                 }
             }
 
-            System.out.print("odd/even, thirds, a number or red/black: ");
+            System.out.print("odd/even, thirds, a number or colours: ");
 
             String choice = scanner.next();
             if (choice.equals("odd/even")) {
@@ -110,7 +110,7 @@ public class roulette {
                         System.out.println("You lose!\nCurrent budget: " + budget + "$");
                     }
                 }
-            }else if (choice.equals("red/black")){
+            }else if (choice.equals("colours")){
                 System.out.print("Red or Black: ");
                 String bet = scanner.next();
                 if (rouletteTable.get(result).equals("Red")){
