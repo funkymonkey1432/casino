@@ -119,9 +119,6 @@ public class roulette {
                     System.out.println("You lose!\nCurrent budget: " + budget + "$");
                 }
             }
-
-
-
             System.out.print("Do you want to continue? yes or no:  ");
             String keepGoing = scanner.next();
 
