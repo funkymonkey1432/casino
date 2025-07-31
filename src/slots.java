@@ -22,35 +22,41 @@ public class slots {
             switch (choice){
                 case "y":
                 case "yes":
-                    Main.money--;
-                    String slot1 = slotSymbols[random.nextInt(8)];
-                    String slot2 = slotSymbols[random.nextInt(8)];
-                    String slot3 = slotSymbols[random.nextInt(8)];
-                    String[] result = {slot1, slot2, slot3};
+                    if (Main.money>0) {
+                        Main.money-=1;
+                        String slot1 = slotSymbols[random.nextInt(8)];
+                        String slot2 = slotSymbols[random.nextInt(8)];
+                        String slot3 = slotSymbols[random.nextInt(8)];
+                        String[] result = {slot1, slot2, slot3};
 
-                    if (result[1].equals(result[2]) && result[1].equals(result[0]) && result[1].equals("7")){
+                        if (result[1].equals(result[2]) && result[1].equals(result[0]) && result[1].equals("7")) {
 
-                        System.out.println("  You hit the Jackpot!");
-                        System.out.println(" ============ ");
-                        System.out.println("| "+result[0] + "   " + result[1] + "   " + result[2] + " |");
-                        System.out.println(" ============ ");
-                        System.out.println("Payout: 700$");
-                        Main.money+=700;
-                        break;
-                    }else if (result[1].equals(result[2]) && result[1].equals(result[0])){
-                        System.out.println("  You win!");
-                        System.out.println(" =========== ");
-                        System.out.println("| "+result[0] + "   " + result[1] + "   " + result[2] + " |");
-                        System.out.println(" =========== ");
-                        System.out.println("Payout: 50$");
-                        Main.money+=50;
-                        break;
+                            System.out.println("  You hit the Jackpot!");
+                            System.out.println(" ============ ");
+                            System.out.println("| " + result[0] + "   " + result[1] + "   " + result[2] + " |");
+                            System.out.println(" ============ ");
+                            System.out.println("Payout: 700$");
+                            Main.money += 700;
+                            break;
+                        } else if (result[1].equals(result[2]) && result[1].equals(result[0])) {
+                            System.out.println("  You win!");
+                            System.out.println(" =========== ");
+                            System.out.println("| " + result[0] + "   " + result[1] + "   " + result[2] + " |");
+                            System.out.println(" =========== ");
+                            System.out.println("Payout: 50$");
+                            Main.money += 50;
+                            break;
+                        } else {
+                            System.out.println("  You lose!");
+                            System.out.println(" =========== ");
+                            System.out.println("| " + result[0] + "   " + result[1] + "   " + result[2] + " |");
+                            System.out.println(" =========== ");
+                            break;
+                        }
                     }else{
-                        System.out.println("  You lose!");
-                        System.out.println(" =========== ");
-                        System.out.println("| "+result[0] + "   " + result[1] + "   " + result[2] + " |");
-                        System.out.println(" =========== ");
-                        break;
+                        System.out.println("You're all out, dummy");
+                        return;
+
                     }
                 case "n":
                 case "no":
