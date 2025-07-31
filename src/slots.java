@@ -29,18 +29,23 @@ public class slots {
                         System.out.println(" ============ ");
                         System.out.println("| "+result[0] + "   " + result[1] + "   " + result[2] + " |");
                         System.out.println(" ============ ");
+                        break;
                     }else if (result[1]==result[2] && result[1]==result[0]){
                         System.out.println("  You win!");
                         System.out.println(" =========== ");
                         System.out.println("| "+result[0] + "   " + result[1] + "   " + result[2] + " |");
                         System.out.println(" =========== ");
+                        break;
                     }else{
                         System.out.println("  You lose!");
                         System.out.println(" =========== ");
                         System.out.println("| "+result[0] + "   " + result[1] + "   " + result[2] + " |");
                         System.out.println(" =========== ");
+                        break;
                     }
-
+                case "no":
+                    System.out.println("Cashing out already? Goodbye! ");
+                    return;
             }
         }
     }
