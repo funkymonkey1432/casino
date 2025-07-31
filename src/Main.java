@@ -9,7 +9,7 @@ public class Main {
         Scanner Input = new Scanner(System.in);
 
         //Defining stuff
-        String[] thingsToDo = {"Roulette", "Black Jack", "Slot Machine", "ATM", "Exit casino"};
+        String[] thingsToDo = {"Roulette", "Black Jack", "Slot Machine", "ATM", "other games", "Exit casino"};
         String activity;
         boolean playing = true;
 
@@ -28,20 +28,26 @@ public class Main {
             activity = Input.nextLine();
 
             switch (activity) {
-                case "1": //Roulette
-                    roulette.main(new String[0]);
-                    break;
-                case "2": //Black Jack
-                    //blackJack.main();
-                    break;
-                case "3": //Slots
-                    slots.main(new String[0]);
-                    break;
-                case "4": //ATM
-                    ATM.main(new String[0]);
-                    break;
-                case "5": //Exit
-                    playing = false;
+                case "1": { //Roulette
+                        roulette.main(new String[0]);}
+                        break;
+                case "2": { //Black Jack
+                        blackJack.main(new String[0]);}
+                        break;
+                case "3": { //Slots
+                        slots.main(new String[0]);}
+                        break;
+                case "4": { //ATM
+                        ATM.main(new String[0]);}
+                        break;
+                case "5": { //other games
+                        System.out.println("╔═══════════════════════╗");
+                        System.out.println("║   Games Coming Soon!  ║");
+                        System.out.println("╚═══════════════════════╝");}
+                        break;
+                case "6": {//Exit
+                        playing = false;}
+                        break;
             }
         }
     }

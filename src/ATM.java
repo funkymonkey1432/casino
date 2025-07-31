@@ -19,30 +19,26 @@ public class ATM {
             String choice = input.nextLine();
 
             switch (choice) {
-                case "1":
+                case "1" -> {
                     System.out.println("inter a amount to deposit");
                     double depositAmount = input.nextDouble();
                     input.nextLine();
                     parentAccount.deposit(depositAmount);
-                    break;
-                case "2":
+                }
+                case "2" -> {
                     System.out.println("inter a amount to withdraw");
                     double withdrawAmount = input.nextDouble();
                     input.nextLine();
                     parentAccount.withdraw(withdrawAmount);
-                    break;
-                case "3":
-                    parentAccount.checkBalance();
-                    break;
-                case "4":
+                }
+                case "3" -> parentAccount.checkBalance();
+                case "4" -> {
                     Main.bankAccount = (int) parentAccount.balance;
                     Main.money = parentAccount.money;
                     System.out.println("Exiting ATM");
                     return;
-
-                default:
-                    System.out.println("invalid  option");
-
+                }
+                default -> System.out.println("invalid  option");
             }
         }
     }

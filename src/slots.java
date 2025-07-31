@@ -17,8 +17,10 @@ public class slots {
 
         while (true){
             System.out.println("Current budget: "+Main.money+"$");
+
             System.out.print("Do you want to spin the wheel for 1$? yes or no:  ");
             String choice = scanner.nextLine();
+
             switch (choice){
                 case "y":
                 case "yes":
