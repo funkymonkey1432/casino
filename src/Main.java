@@ -29,13 +29,13 @@ public class Main {
 
             switch (activity) {
                 case "1": //Roulette
-                    //roulette.main();
+                    roulette.main(new String[0]);
                     break;
                 case "2": //Black Jack
                     //blackJack.main();
                     break;
                 case "3": //Slots
-                    //slots.main();
+                    slots.main(new String[0]);
                     break;
                 case "4": //ATM
                     ATM.main(new String[0]);
