@@ -1,14 +1,15 @@
 import java.util.Scanner;
 
 public class Main {
+    static String name;
+    static int bankAccount = 1400;
+    static int money = 100;
+
     public static void main (String [] args) {
         Scanner Input = new Scanner(System.in);
 
         //Defining stuff
         String[] thingsToDo = {"Roulette", "Black Jack", "Slot Machine", "ATM", "Exit casino"};
-        int money = 100;
-        int bankAccount = 1400;
-        String name;
         String activity;
         boolean playing = true;
 
@@ -28,12 +29,16 @@ public class Main {
             switch (activity) {
                 case "1": //Roulette
                     //roulette.main();
+                    break;
                 case "2": //Black Jack
                     //blackJack.main();
+                    break;
                 case "3": //Slots
                     //slots.main();
+                    break;
                 case "4": //ATM
-                    //ATM.main();
+                    ATM.main(new String[0]);
+                    break;
                 case "5": //Exit
                     playing = false;
             }
