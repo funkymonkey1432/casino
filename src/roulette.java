@@ -1,26 +1,15 @@
-import java.util.Random;
-import java.util.Scanner;
-import java.util.HashMap;
-import java.util.Map;
+//TODO: ben put all the win and lose statements together and make everything a switch case
+import java.util.*;
 
 public class roulette {
+
+    static int budget = Main.money;
+    static int [] reds = {1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32};
+    static Map<Integer, String> rouletteTable = new HashMap<>();
+
     public static void main(String[] args){
 
-        int budget = Main.money ;
-
-        int [] reds = {1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32};
-
-        Map<Integer, String> rouletteTable = new HashMap<>();
-
-        rouletteTable.put(0, "green");
-
-        for (int i = 0; i<33; i++) {
-            if (containsInteger.contains(reds, i)) {
-                rouletteTable.put(i, "red");
-            }else{
-                rouletteTable.put(i, "black");
-            }
-        }
+        sortColours();
 
         while (true) {
 
@@ -28,7 +17,6 @@ public class roulette {
 
             Random number = new Random();
             int result;
-
             int wager;
 
             result = number.nextInt(33);
@@ -50,24 +38,21 @@ public class roulette {
                 }
             }
 
-            System.out.print("odd/even, thirds, a number or colours: ");
-
+            System.out.print("parity (odd/even), thirds, a number or colours (Type one of the 4 given options): ");
             String choice = scanner.next();
-            if (choice.equals("odd/even")) {
-                System.out.print("Odd or Even: ");
-                String bet = scanner.next();
+            choice = choice.toLowerCase();
+            if (choice.equals("parity")) {
+                System.out.print("odd or even: ");
+                String bet = scanner.next().toLowerCase();
                 System.out.println("The result is: " + result);
-                if (bet.equals("Even") && result % 2 == 0 && 0 != result) {
-                    System.out.println("You win!\n Bet: " + wager + "\nPayout: Your bet + " + wager + "$");
-                    budget = budget + 2 * wager;
+
+                if ((bet.equals("even") && result % 2 == 0 && 0 != result) ||
+                    (bet.equals("odd") && result % 2 == 1 && 0 != result)) {
+                    System.out.println("You win!\nBet: " + wager + "\nPayout: Your bet + " + wager + "$");
+                    budget += 2 * wager;
                     System.out.println("Current budget: " + budget + "$");
-                } else if (bet.equals("Odd") && result % 2 == 1) {
-                    System.out.println("You win!\n Bet: " + wager + "$\nPayout: Your bet + " + wager + "$");
-                    budget = budget + 2 * wager;
-                    System.out.println("Current budget: " + budget + "$");
-                } else if (bet.equals("Even") && result % 2 == 1) {
-                    System.out.println("You lose!\nCurrent budget: " + budget + "$");
-                } else if (bet.equals("Odd") && result % 2 == 0) {
+                } else if ((bet.equals("even") && result % 2 == 1) ||
+                          (bet.equals("odd") && result % 2 == 0)){
                     System.out.println("You lose!\nCurrent budget: " + budget + "$");
                 } else {
                     System.out.println("invalid input");
@@ -84,8 +69,8 @@ public class roulette {
                 }
 
             } else if (choice.equals("thirds")) {
-                System.out.print("bottom,mid or top third: ");
-                String thirdsChoice = scanner.next();
+                System.out.print("bottom,mid or top: ");
+                String thirdsChoice = scanner.next().toLowerCase();
                 if (thirdsChoice.equals("bottom")) {
                     if (result <= 10) {
                         System.out.println("You win!\nBet: " + wager + "$\nPayout: " + (2 * wager) + "$");
@@ -113,8 +98,11 @@ public class roulette {
             }else if (choice.equals("colours")){
                 System.out.print("Red or Black: ");
                 String bet = scanner.next();
-                if (rouletteTable.get(result).equals("Red")){
-                    System.out.println("You win!\n Bet: " + wager + "\nPayout: Your bet + " + wager + "$");
+                bet = bet.toLowerCase();
+                System.out.println(bet);
+                System.out.println("Its a "+rouletteTable.get(result)+" "+result+".");
+                if ((rouletteTable.get(result).equals("red") && bet.equals("red")) || (rouletteTable.get(result).equals("black") && bet.equals("black"))){
+                    System.out.println("You win!\nBet: " + wager + "\nPayout: Your bet + " + wager + "$");
                     budget+=2*wager;
                 }else{
                     System.out.println("You lose!\nCurrent budget: " + budget + "$");
@@ -133,6 +121,18 @@ public class roulette {
                 break;
             }
 
+        }
+    }
+    private static void sortColours(){
+
+        rouletteTable.put(0, "green");
+
+        for (int i = 0; i<33; i++) {
+            if (containsInteger.contains(reds, i)) {
+                rouletteTable.put(i, "red");
+            } else {
+                rouletteTable.put(i, "black");
+            }
         }
     }
 }
