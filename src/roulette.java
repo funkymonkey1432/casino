@@ -25,7 +25,7 @@ public class roulette {
             System.out.println("\nStarting budget: " + budget + "$");
 
             while (true) {
-                System.out.print("Place your bet: ");
+                System.out.print("Place your bet (number): ");
                 wager = scanner.nextInt();
 
 
@@ -38,7 +38,7 @@ public class roulette {
                 }
             }
 
-            System.out.print("parity (odd/even), thirds, a number or colours (Type one of the 4 given options): ");
+            System.out.print("parity (odd/even), thirds, number or colours (Type one of the 4 given options): ");
             String choice = scanner.next();
             choice = choice.toLowerCase();
 

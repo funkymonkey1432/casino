@@ -46,6 +46,13 @@ public class Main {
                         System.out.println("╚═══════════════════════╝");}
                         break;
                 case "6": {//Exit
+                    if (money+bankAccount-ATM.loanAmount<1500){
+                        System.out.println("You lost $"+(1500-Math.abs(money+bankAccount-ATM.loanAmount))+".");
+                    }else if (money+bankAccount-ATM.loanAmount>1500){
+                        System.out.println("You won $"+(Math.abs(money+bankAccount-ATM.loanAmount)-1500)+".");
+                    }else{
+                        System.out.println("You broke even");
+                    }
                         playing = false;}
                         break;
             }
