@@ -9,7 +9,7 @@ public class Main {
         Scanner Input = new Scanner(System.in);
 
         //Defining stuff
-        String[] thingsToDo = {"Roulette", "Black Jack", "Slot Machine", "ATM", "other games", "Exit casino"};
+        String[] thingsToDo = {"Roulette", "Black Jack", "Slot Machine","Rock paper scissors", "ATM", "other games", "Exit casino"};
         String activity;
         boolean playing = true;
 
@@ -24,7 +24,7 @@ public class Main {
         while (playing) {
             System.out.println("you have: $" + money + " on hand and \n $" + bankAccount + " in your bank account. \n");
             printGames(thingsToDo);
-            System.out.print("what would you like to do(inter the number): ");
+            System.out.print("what would you like to do e(enter the number): ");
             activity = Input.nextLine();
 
             switch (activity) {
@@ -37,15 +37,18 @@ public class Main {
                 case "3": { //Slots
                         slots.main(new String[0]);}
                         break;
-                case "4": { //ATM
+                case "4": { //r p s
+                        rockPaperScissors.main(new String[0]);}
+                        break;
+                case "5": { //ATM
                         ATM.main(new String[0]);}
                         break;
-                case "5": { //other games
+                case "6": { //other games
                         System.out.println("╔═══════════════════════╗");
                         System.out.println("║   Games Coming Soon!  ║");
                         System.out.println("╚═══════════════════════╝");}
                         break;
-                case "6": {//Exit
+                case "7": {//Exit
                     if (money+bankAccount-ATM.loanAmount<1500){
                         System.out.println("You lost $"+(1500-Math.abs(money+bankAccount-ATM.loanAmount))+".");
                     }else if (money+bankAccount-ATM.loanAmount>1500){
