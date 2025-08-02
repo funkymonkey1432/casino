@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class ATM {
 
-    static double loanAmount;
+    static int loanAmount;
 
     public static void main (String [] args) {
         String name = Main.name;
@@ -27,28 +27,28 @@ public class ATM {
             switch (choice) {
                 case "1" -> {
                     System.out.print("inter a amount to deposit: ");
-                    double depositAmount = input.nextDouble();
+                    int depositAmount = input.nextInt();
                     input.nextLine();
                     parentAccount.deposit(depositAmount);
                 }
                 case "2" -> {
                     System.out.println("you have $" + bankAccount);
                     System.out.print("enter an amount to withdraw: ");
-                    double withdrawAmount = input.nextDouble();
+                    int withdrawAmount = input.nextInt();
                     input.nextLine();
                     parentAccount.withdraw(withdrawAmount);
                 }
                 case "3" -> parentAccount.checkBalance();
                 case "4" -> {
                     System.out.print("enter an amount for your loan: ");
-                    loanAmount = input.nextDouble();
+                    loanAmount = input.nextInt();
                     input.nextLine();
                     parentAccount.money += loanAmount;
                 }
                 case "5" -> {
                     if (loanAmount!=0 && Main.money!=0){
                         System.out.print("Current loan debt: $"+loanAmount+"\nCash in hand: $"+Main.money+"\nthe amount you want to pay off: ");
-                        double loanPayoffAmount = input.nextDouble();
+                        int loanPayoffAmount = input.nextInt();
                         input.nextLine();
                         loanAmount-=loanPayoffAmount;
                         System.out.println("\nNew loan amount: $"+loanAmount);
@@ -76,14 +76,14 @@ public class ATM {
         int money = Main.money;
 
         public String name;
-        public double balance;
+        public int balance;
 
         public primaryAccount(String name, int balance) {
             this.name = name;
             this.balance = balance;
         }
 
-        public void deposit(double amount) {
+        public void deposit(int amount) {
             if (amount >= 0 && amount <= money) {
                 money -= amount;
                 this.balance += amount;
@@ -93,7 +93,7 @@ public class ATM {
             }
         }
 
-        public void withdraw(double amount) {
+        public void withdraw(int amount) {
             if (amount >= 0 && amount <= this.balance) {
                 money += amount;
                 this.balance -= amount;
