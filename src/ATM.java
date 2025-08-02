@@ -20,26 +20,27 @@ public class ATM {
             System.out.println("4. Take out a loan");
             System.out.println("5. Pay off a loan");
             System.out.println("6. Exit");
-            System.out.println("chose a option 1-6: ");
+            System.out.print("chose a option 1-6: ");
 
             String choice = input.nextLine();
 
             switch (choice) {
                 case "1" -> {
-                    System.out.println("inter a amount to deposit");
+                    System.out.print("inter a amount to deposit: ");
                     double depositAmount = input.nextDouble();
                     input.nextLine();
                     parentAccount.deposit(depositAmount);
                 }
                 case "2" -> {
-                    System.out.println("enter an amount to withdraw");
+                    System.out.println("you have $" + bankAccount);
+                    System.out.print("enter an amount to withdraw: ");
                     double withdrawAmount = input.nextDouble();
                     input.nextLine();
                     parentAccount.withdraw(withdrawAmount);
                 }
                 case "3" -> parentAccount.checkBalance();
                 case "4" -> {
-                    System.out.println("enter an amount for your loan: ");
+                    System.out.print("enter an amount for your loan: ");
                     loanAmount = input.nextDouble();
                     input.nextLine();
                     parentAccount.money += loanAmount;
