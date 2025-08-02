@@ -10,6 +10,9 @@ public class blackJack {
     static int playerSum = 0;
     static int playerAces = 0;
 
+    static int newPlayerCard;
+    static int newDealerCard;
+
     public static void main (String [] args) {
         Random random = new Random();
 
@@ -22,7 +25,9 @@ public class blackJack {
 
         ArrayList<Integer> deck = deckBuilder();
         drawCardPlayer(deck);
-        int newPlayerCard = drawCardPlayer(deck);
+
+
+
     }
 
 
@@ -41,13 +46,24 @@ public class blackJack {
         }
         return deck;
     }
+
     public static Integer drawCardPlayer(ArrayList<Integer> deck) {
         Random random = new Random();
         int randomNumber = random.nextInt(deck.size());
-        int newPlayerCard = deck.get(randomNumber);
+        newPlayerCard = deck.get(randomNumber);
         deck.remove(randomNumber);
         System.out.println("you drew a " + newPlayerCard);
         playerHand.add(newPlayerCard);
         return newPlayerCard;
+    }
+
+    public static Integer drawCardDealer(ArrayList<Integer> deck) {
+        Random random = new Random();
+        int randomNumber = random.nextInt(deck.size());
+        newDealerCard = deck.get(randomNumber);
+        deck.remove(randomNumber);
+        System.out.println("you drew a " + newDealerCard);
+        dealerHand.add(newDealerCard);
+        return newDealerCard;
     }
 }
