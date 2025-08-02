@@ -1,3 +1,4 @@
+import java.util.Objects;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -19,13 +20,13 @@ public class blackJack {
         boolean betConferm = false;
         boolean bubble = true;
 
-        while (money > 0 || bubble) {
+        while (money > 0 && bubble) {
 
             System.out.println("\n\nbetting:");
 
             while (!betConferm) {
                 System.out.println("you have " + money + " money");
-                System.out.println("how much would you like to bet: ");
+                System.out.print("how much would you like to bet: ");
                 newBet = Integer.parseInt(playerInput.nextLine());
                 if (newBet <= money) {betConferm = true;}
             }
@@ -39,6 +40,7 @@ public class blackJack {
             int dealerAces = 0;
             int newDealerCardPosition;
             boolean dealerHit = true;
+            String playAgain = "no";
 
             int playerHand = 0;
             int newPlayerCard;
@@ -75,7 +77,7 @@ public class blackJack {
                             players turn
             ===============================================
              */
-            System.out.println("players turn:\n" + "your first card was a " + (playerHand - newPlayerCard) + "\nyour second card was a " + newPlayerCard);
+            System.out.println("\nplayers turn:\n" + "your first card was a " + (playerHand - newPlayerCard) + "\nyour second card was a " + newPlayerCard);
 
 
             if (playerHand > 21 && playerAces > 1) {
@@ -94,7 +96,7 @@ public class blackJack {
 
                 System.out.println("hand sum is " + playerHand + ".");
                 System.out.println("you have " + playerAces + " aces");
-                System.out.println("do you want to Hit or Stay: ");
+                System.out.print("do you want to Hit or Stay: ");
                 String userInput = playerInput.nextLine();
                 if (userInput.equals("hit") || userInput.equals("Hit")) {
 
@@ -130,6 +132,7 @@ public class blackJack {
                                      dealer turn
             =================================================================
              */
+
             newDealerCardPosition = generator.nextInt(deck.length);
             newDealerCard = deck[newDealerCardPosition];
             dealerHand += newDealerCard;
@@ -194,10 +197,10 @@ public class blackJack {
             }
             System.out.println("\n" + whoWon);
 
-            System.out.print("do you like to play again: ");
-            boolean flamingo = (playerInput.nextLine() == ("no"));
+            System.out.print("do you want to play again: ");
+            playAgain = playerInput.nextLine();
 
-            if (flamingo) {
+            if (playAgain.equals("no")) {
                 Main.money = money;
                 bubble = false;
             }
