@@ -3,16 +3,30 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class blackJack {
+
+    static ArrayList<Integer> playerHand = new ArrayList<>();
+    static ArrayList<Integer> dealerHand = new ArrayList<>();
+
+    static int playerSum = 0;
+    static int playerAces = 0;
+
     public static void main (String [] args) {
         Random random = new Random();
+
         int money = Main.money ;
         int bet = 0;
 
+
+
+
+
         ArrayList<Integer> deck = deckBuilder();
-        System.out.println(deck);
         drawCardPlayer(deck);
         int newPlayerCard = drawCardPlayer(deck);
     }
+
+
+
     public static ArrayList<Integer> deckBuilder () {
         ArrayList<Integer> deck = new ArrayList<>();
         for (int i = 0; i < 52; i++) {
@@ -29,9 +43,11 @@ public class blackJack {
     }
     public static Integer drawCardPlayer(ArrayList<Integer> deck) {
         Random random = new Random();
-        int randomNumber = random.nextInt(52);
+        int randomNumber = random.nextInt(deck.size());
         int newPlayerCard = deck.get(randomNumber);
         deck.remove(randomNumber);
+        System.out.println("you drew a " + newPlayerCard);
+        playerHand.add(newPlayerCard);
         return newPlayerCard;
     }
 }
