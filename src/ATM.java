@@ -32,7 +32,7 @@ public class ATM {
                     parentAccount.deposit(depositAmount);
                 }
                 case "2" -> {
-                    System.out.println("you have $" + bankAccount);
+                    System.out.println("you have $" + parentAccount.balance);
                     System.out.print("enter an amount to withdraw: ");
                     int withdrawAmount = input.nextInt();
                     input.nextLine();
@@ -43,7 +43,9 @@ public class ATM {
                     System.out.print("enter an amount for your loan: ");
                     loanAmount = input.nextInt();
                     input.nextLine();
-                    parentAccount.money += loanAmount;
+                    if (loanAmount > 0) {
+                        parentAccount.money += loanAmount;
+                    }
                 }
                 case "5" -> {
                     if (loanAmount!=0 && Main.money!=0){
@@ -51,6 +53,7 @@ public class ATM {
                         int loanPayoffAmount = input.nextInt();
                         input.nextLine();
                         loanAmount-=loanPayoffAmount;
+                        parentAccount.money -= loanPayoffAmount;
                         System.out.println("\nNew loan amount: $"+loanAmount);
                     }else if (Main.money==0){
                         System.out.println("you can only pay cash.\ncurrent cash amount: $"+Main.money);
@@ -87,7 +90,7 @@ public class ATM {
             if (amount >= 0 && amount <= money) {
                 money -= amount;
                 this.balance += amount;
-                System.out.println("Deposited $" + amount + " your new balance is " + this.balance);
+                System.out.println("Deposited $" + amount + " your new balance is $" + this.balance);
             } else {
                 System.out.println("invalid amount");
             }
@@ -97,17 +100,14 @@ public class ATM {
             if (amount >= 0 && amount <= this.balance) {
                 money += amount;
                 this.balance -= amount;
-                System.out.println("WithDrew $" + amount + " your new balance is " + this.balance);
+                System.out.println("WithDrew $" + amount + " your new balance is $ " + this.balance);
             } else {
                 System.out.println("invalid amount");
             }
         }
 
         public void checkBalance () {
-            String rep;
-            rep = String.format("%.2f", loanAmount);
-            System.out.print("current balance: $" + this.balance+"\nloans to pay off: $"+rep);
-            loanAmount*=1.2;
+            System.out.print("current balance: $" + this.balance+"\nloans to pay off: $" + loanAmount + "\n");
         }
     }
 
