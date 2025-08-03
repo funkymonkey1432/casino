@@ -13,6 +13,8 @@ public class Main {
         String activity;
         boolean playing = true;
 
+        System.out.println("this branch is under construction\nplease go to main branch");
+
         //welcome code
         System.out.println("============================");
         System.out.println("    welcome to the casino   ");
