@@ -18,14 +18,18 @@ public class blackJack {
     static int newDealerCard;
 
     public static void main (String [] args) {
-        Random random = new Random();
         Scanner Input = new Scanner(System.in);
 
         int money = Main.money ;
-        int bet = 0;
+        int bet;
 
+
+        //delete this before final code
         money = 100;
 
+
+
+        String choice;
         boolean betting =  true;
         boolean playerPlaying = true;
         boolean dealerPlaying = true;
@@ -37,6 +41,7 @@ public class blackJack {
             while (betting) {
                 System.out.print("how much do you want to bet: ");
                 bet = Input.nextInt();
+                Input.nextLine();
                 if (bet > money || bet < 0) {
                     System.out.println("invalid option Try again");
                 } else {betting = false;}
@@ -57,21 +62,42 @@ public class blackJack {
 
             System.out.println("Aces: " + playerAces);
             System.out.println("hand: " + playerHand);
-            /*
-            while (playerPlaying) {
+            System.out.println("Sum: " + playerSum);
 
+            while (playerPlaying) {
+                System.out.print("\ndo you want to hit or stay: ");
+                choice = Input.nextLine().trim();
+                Input.nextLine();
+                switch (choice) {
+                    case "Hit":
+                    case "hit":
+                        drawCardPlayer(deck);
+                        System.out.println("Aces: " + playerAces);
+                        System.out.println("Hand: " + playerHand);
+                        System.out.println("Sum: " + playerSum);
+                        break;
+                    case "Stay":
+                    case "stay":
+                        playerPlaying = false;
+                        break;
+                }
 
             }
-
+            /*
             while (dealerPlaying) {
 
 
             }
             */
-            System.out.print("do you want to play again: ");
+            System.out.print("\ndo you want to play again: ");
             String playAgain = Input.nextLine();
             Input.nextLine();
+            Input.nextLine();
             if (playAgain.equals("no") || playAgain.equals("No")) {playing = false;}
+
+            betting = true;
+            playerPlaying = true;
+            dealerPlaying = true;
         }
     }
 
@@ -90,7 +116,7 @@ public class blackJack {
         return deck;
     }
 
-    public static Integer drawCardPlayer(ArrayList<Integer> deck) {
+    public static void drawCardPlayer(ArrayList<Integer> deck) {
         Random random = new Random();
         int randomNumber = random.nextInt(deck.size());
 
@@ -100,19 +126,24 @@ public class blackJack {
         System.out.println("you drew a " + newPlayerCard);
         playerHand.add(newPlayerCard);
 
-        for (int i = 0; 1 < (playerHand.size() - 1); i++) {
-            playerSum += playerHand.get(i);
+        playerSum = 0;
+        for (int card : playerHand) {
+            playerSum += card;
         }
 
         if (newPlayerCard == 11) {playerAces ++;}
 
-        if (deck.isEmpty()) {deck = deckBuilder();}
+        if (playerSum > 21 && playerAces > 0) {
+            System.out.println("turning ace to 1");
+        }
 
-        return newPlayerCard;
+        if (deck.isEmpty()) {
+            deckBuilder();
+        }
 
     }
 
-    public static Integer drawCardDealer(ArrayList<Integer> deck) {
+    public static void drawCardDealer(ArrayList<Integer> deck) {
         Random random = new Random();
         int randomNumber = random.nextInt(deck.size());
 
@@ -121,14 +152,15 @@ public class blackJack {
 
         dealerHand.add(newDealerCard);
 
-        for (int i = 0; 1 < (dealerHand.size() - 1); i++) {
-            dealerSum += dealerHand.get(i);
+        dealerSum = 0;
+        for (int card : dealerHand) {
+            dealerSum += card;
         }
 
         if (newDealerCard == 11) {dealerAces ++;}
 
-        if (deck.isEmpty()) {deck = deckBuilder();}
-
-        return newDealerCard;
+        if (deck.isEmpty()) {
+            deckBuilder();
+        }
     }
 }
