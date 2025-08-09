@@ -35,6 +35,7 @@ public class blackJack {
 
         while (playing) {
             while (betting) {
+                System.out.println("you have " + money + "money");
                 System.out.print("how much do you want to bet: ");
                 bet = Input.nextInt();
                 Input.nextLine();

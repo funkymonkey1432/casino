@@ -24,7 +24,7 @@ public class Main {
         while (playing) {
             System.out.println("you have: $" + money + " on hand and \n $" + bankAccount + " in your bank account. \n");
             printGames(thingsToDo);
-            System.out.print("what would you like to do e(enter the number): ");
+            System.out.print("what would you like to do (enter the number): ");
             activity = Input.nextLine();
 
             switch (activity) {
