@@ -7,12 +7,13 @@ public class blackJack {
     static ArrayList<Integer> playerHand = new ArrayList<>();
     static ArrayList<Integer> dealerHand = new ArrayList<>();
 
+    static ArrayList<Integer> playerAces = new ArrayList<>();
+    static ArrayList<Integer> dealerAces = new ArrayList<>();
+
 
     static int playerSum = 0;
-    static int playerAces = 0;
 
     static int dealerSum = 0;
-    static int dealerAces = 0;
 
     static int newPlayerCard;
     static int newDealerCard;
@@ -21,7 +22,7 @@ public class blackJack {
         Scanner Input = new Scanner(System.in);
 
         int money = Main.money ;
-        int bet;
+        int bet = 0;
 
 
         //delete this before final code
@@ -35,7 +36,8 @@ public class blackJack {
         boolean dealerPlaying = true;
         boolean playing = true;
 
-
+        boolean playerBusted = false;
+        boolean dealerBusted = false;
 
         while (playing) {
             while (betting) {
@@ -60,19 +62,19 @@ public class blackJack {
 
             drawCardDealer(deck);
 
-            System.out.println("Aces: " + playerAces);
+            System.out.println("Aces: " + playerAces.size());
             System.out.println("hand: " + playerHand);
             System.out.println("Sum: " + playerSum);
 
             while (playerPlaying) {
                 System.out.print("\ndo you want to hit or stay: ");
                 choice = Input.nextLine().trim();
-                Input.nextLine();
+
                 switch (choice) {
                     case "Hit":
                     case "hit":
                         drawCardPlayer(deck);
-                        System.out.println("Aces: " + playerAces);
+                        System.out.println("Aces: " + playerAces.size());
                         System.out.println("Hand: " + playerHand);
                         System.out.println("Sum: " + playerSum);
                         break;
@@ -82,24 +84,68 @@ public class blackJack {
                         break;
                 }
 
+                if (playerSum > 21) {
+                    System.out.println("you busted");
+                    playerPlaying = false;
+                    playerBusted = true;
+                }
+
             }
-            /*
+            System.out.println("dealers hole card is " + newDealerCard);
+            System.out.println("dealers total is " + dealerSum);
             while (dealerPlaying) {
+                if (dealerSum < 17) {
+                    drawCardDealer(deck);
+                    System.out.println("\ndealer draws a " + newDealerCard + "\ndealers new total is " + dealerSum);
+                }
+                if (dealerSum > 21) {
+                    System.out.println("dealer busted");
+                    dealerPlaying = false;
+                    dealerBusted = true;
+                }
+                if (dealerSum > 17 && dealerSum < 21) {
+                    System.out.println("dealer stays");
+                    dealerPlaying = false;
+                }
 
 
             }
-            */
+
+            if (playerBusted && dealerBusted) {
+                System.out.println("you both busted \nyou lose :(");
+            } else if (playerSum > dealerSum) {
+                System.out.println("you had a higher sum \nyou win!");
+                money += (bet * 2);
+            }else if (dealerSum > playerSum) {
+                System.out.println("the dealer had a higher sum \nyou lose :(");
+            }else {
+                System.out.println("your sums are the same \nyou tie");
+                money += bet;
+            }
+            bet = 0;
+
+            while (!playerHand.isEmpty()) {
+                playerHand.remove(0);
+            }
+            while (!dealerHand.isEmpty()) {
+                dealerHand.remove(0);
+            }
             System.out.print("\ndo you want to play again: ");
             String playAgain = Input.nextLine();
-            Input.nextLine();
-            Input.nextLine();
             if (playAgain.equals("no") || playAgain.equals("No")) {playing = false;}
 
             betting = true;
             playerPlaying = true;
             dealerPlaying = true;
+
+            playerAces.clear();
+            dealerAces.clear();
+            playerSum = dealerSum = 0;
+            playerBusted = dealerBusted = false;
+
         }
     }
+
 
     public static ArrayList<Integer> deckBuilder () {
         ArrayList<Integer> deck = new ArrayList<>();
@@ -131,14 +177,21 @@ public class blackJack {
             playerSum += card;
         }
 
-        if (newPlayerCard == 11) {playerAces ++;}
+        if (newPlayerCard == 11) {playerAces.add(playerHand.size()-1);}
 
-        if (playerSum > 21 && playerAces > 0) {
+        if (playerSum > 21 && !playerAces.isEmpty()) {
             System.out.println("turning ace to 1");
+            playerHand.set(playerAces.get(0), 1);
+            playerAces.remove(0);
         }
 
         if (deck.isEmpty()) {
             deckBuilder();
+        }
+
+        playerSum = 0;
+        for (int card : playerHand) {
+            playerSum += card;
         }
 
     }
@@ -157,10 +210,22 @@ public class blackJack {
             dealerSum += card;
         }
 
-        if (newDealerCard == 11) {dealerAces ++;}
+        if (newDealerCard == 11) {dealerAces.add(dealerHand.size() - 1);}
+
+        if (dealerSum > 21 && !dealerAces.isEmpty()) {
+            System.out.println("turning ace to 1");
+            dealerHand.set(dealerAces.get(0), 1);
+            dealerAces.remove(0);
+        }
 
         if (deck.isEmpty()) {
-            deckBuilder();
+            deck.addAll(deckBuilder());
         }
+
+        dealerSum = 0;
+        for (int card : dealerHand) {
+            dealerSum += card;
+        }
+
     }
 }
