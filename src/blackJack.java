@@ -24,12 +24,6 @@ public class blackJack {
         int money = Main.money ;
         int bet = 0;
 
-
-        //delete this before final code
-        money = 100;
-
-
-
         String choice;
         boolean betting =  true;
         boolean playerPlaying = true;
